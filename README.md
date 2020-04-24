@@ -27,3 +27,4 @@ Image {
 ```
 
 # Shape
+Antialiasing allows you to drew shape smoothly however it doesn't work for ColorOverlay (which is layer actually).
