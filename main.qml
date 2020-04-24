@@ -83,8 +83,8 @@ Window {
             rotation: -90
             antialiasing: true
 
-//            renderTarget: Canvas.FramebufferObject
-//            renderStrategy: Canvas.Cooperative
+            //            renderTarget: Canvas.FramebufferObject
+            //            renderStrategy: Canvas.Cooperative
 
             property double angleEnd: 0
 
@@ -253,5 +253,106 @@ Window {
         mipmap: true
 
         source: "qrc:/ff.png"
+    }
+
+    // Shapes example
+    Rectangle{
+        y: 500
+        width: 100
+        height: 100
+        color: "black"
+
+        Text {
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+                verticalCenter: parent.verticalCenter
+            }
+
+            color: "white"
+
+            text: qsTr("Click me")
+        }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                rectNoSmooth.layer.enabled = false
+                rectSmooth.layer.enabled = false
+            }
+            onDoubleClicked: {
+                rectNoSmooth.layer.enabled = true
+                rectSmooth.layer.enabled = true
+            }
+        }
+    }
+
+    Rectangle {
+        id: rectNoSmooth
+        x: 100
+        y: 600
+        width: 100
+        height: 200
+        color: "#00AA00"
+        rotation: 17
+
+        layer {
+            enabled: false
+            effect: ColorOverlay {
+                anchors {
+                    fill: rectNoSmooth
+                }
+
+                color: "#AA0000BB"
+                rotation: rectNoSmooth.rotation
+                opacity: 0.5
+            }
+        }
+    }
+
+
+    Rectangle {
+        id: rectSmooth
+        x: 300
+        y: 600
+        width: 100
+        height: 200
+        color: "#00AA00"
+        rotation: 17
+
+        antialiasing: true
+
+        layer {
+            enabled: false
+            smooth: true
+            mipmap: true
+
+            effect: ColorOverlay {
+                anchors {
+                    fill: rectSmooth
+                }
+
+                color: "#AA0000BB"
+                rotation: rectSmooth.rotation
+                opacity: 0.5
+            }
+        }
+    }
+
+    Rectangle {
+        id: rectSmoothNoOverlay
+        x: 500
+        y: 600
+        width: 100
+        height: 200
+        color: "#00AA00"
+        rotation: 17
+
+        antialiasing: true
+
+        Rectangle {
+            anchors.fill: parent
+            color: "#AA0000BB"
+            opacity: 0.2
+            antialiasing: true
+        }
     }
 }
