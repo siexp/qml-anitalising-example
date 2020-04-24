@@ -8,6 +8,7 @@ Window {
     height: Screen.desktopAvailableHeight
     title: qsTr("qml-anitalising-example")
 
+    // JS-Canvas example
     Rectangle{
         width: 100
         height: 100
@@ -224,5 +225,33 @@ Window {
                 canvasWithSmoothing.angleEnd = 360 - ((timePercent / 100) * 360)
             }
         }
+    }
+
+    // Image example
+    Image {
+        id: _noAA_noMipmap
+
+        x: 700
+        y: 100
+        width: 300
+        height: 300
+        rotation: 27
+        source: "qrc:/ff.png"
+    }
+
+    Image {
+        id: _AA_Mipmap
+
+        x: 1000
+        y: 100
+        width: 300
+        height: 300
+        rotation: 27
+
+        // you need both for real smoothing
+        antialiasing: true
+        mipmap: true
+
+        source: "qrc:/ff.png"
     }
 }
